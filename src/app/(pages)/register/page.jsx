@@ -6,7 +6,7 @@ import { FaGooglePlusG, FaFacebookSquare } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import Link from "next/link";
 const Register = () => {
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const newUser = {
@@ -15,22 +15,15 @@ const Register = () => {
       password: form.password.value,
     };
 
-/* post data */
-const response=await fetch('http://localhost:3000/register/api',{
-
-method:"POST",
-body:JSON.stringify(newUser),
-headers:{'contecttype':"application/json"}
-
-
-
-})
-
-
-if(response.status ==200){return e.target.reset()}
-
-
-
+    /* post data */
+    const response = await fetch("http://localhost:3000/register/api", {
+      method: "POST",
+      body: JSON.stringify(newUser),
+      headers: { contecttype: "application/json" },
+    });
+ if (response.status == 200) {
+      return e.target.reset();
+    }
 
 
 

@@ -1,0 +1,7 @@
+1.import NextAuth from "next-auth/next"
+2.const handaler= async () =>  NextAuth({
+
+
+
+})
+3.export {handaler as GET, handaler as POST}
