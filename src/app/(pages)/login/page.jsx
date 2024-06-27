@@ -16,7 +16,9 @@ const Login = () => {
       email:form.email.value,
       password:form.password.value
     }
-    console.log(user)
+
+
+
   }
   return (
     <div>
@@ -24,7 +26,7 @@ const Login = () => {
     <div className="hero-content   flex-col-reverse lg:flex-row lg:justify-between gap-8">
       <div className="text-center lg:text-left">
    
-       <Image src='/assets/images/login/login.svg' width={500} height={500}></Image>
+       <Image src='/assets/images/login/login.svg' alt='image' width={500} height={500}></Image>
       </div>
       <div className="card bg-white  w-full max-w-sm shrink-0 shadow-2xl">
       <h1 className="text-3xl lg:text-3xl font-bold  text-red-500 text-center  animate-pulse my-5">Login now!</h1>

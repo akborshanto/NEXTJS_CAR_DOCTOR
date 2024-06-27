@@ -1,25 +1,23 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://next-car-doctor:OADWQ75PbKs04kUn@cluster1.phei2xm.mongodb.net/?appName=Cluster1";
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
-async function run() {
+import { MongoClient, ServerApiVersion } from "mongodb";
+
+let db;
+export const connetDB = async () => {
+  if (db) return db;
   try {
-    const userCollection=client.db('next-car-doctor').collection("car-doctor-user")
-    console.log("dsf")
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-   // await client.close();
+    const uri = "mongodb+srv://car-doctor-next:F9MB5G2FzLO4URiR@cluster1.phei2xm.mongodb.net/?appName=Cluster1";
+
+    const client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      },
+    });
+
+    /* db collection */
+    db = client.db("car-doctor-next");
+    return db;
+  } catch (err) {
+    console.log(err);
   }
-}
-run().catch(console.dir);
+};
