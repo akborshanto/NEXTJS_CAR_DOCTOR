@@ -1,4 +1,3 @@
-
 import { connetDB } from "@/app/lib/connectDb";
 import bcrypt from "bcrypt";
 export const POST = async (request) => {

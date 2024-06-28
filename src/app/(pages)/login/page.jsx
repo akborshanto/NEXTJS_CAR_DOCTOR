@@ -6,14 +6,17 @@ import { FaGooglePlusG, FaFacebookSquare, FaGithub } from "react-icons/fa";
 import { CiLinkedin } from "react-icons/ci";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
+  const router=useRouter()
   const handleSubmit = async(e) => {
     e.preventDefault();
     const form = e.target;
 
     const email = form.email.value;
-    const password = form.target.value;
+    const password = form.password.value;
 
     const resp = await signIn("credentials", {
       email,
@@ -21,7 +24,17 @@ const Login = () => {
       redirect: false,
     });
 
-console.log(resp)
+if(resp.status ==200){
+  Swal.fire("Successfully Login 😍😍");
+router.push('/')
+  return e.target.reset()
+}else{
+
+  Swal.fire({
+    title:"Dont Match Password",
+    icon:'error'
+  })
+}
  
   };
   return (

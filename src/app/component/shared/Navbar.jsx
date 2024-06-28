@@ -1,8 +1,15 @@
+'use client'
+import { useSession } from 'next-auth/react';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { TiShoppingCart } from "react-icons/ti";
 const Navbar = () => {
+
+/* userINFO get koarar jnno */
+const sesstion=useSession()
+console.log(sesstion)
+
     const navItem=[
 
 {
@@ -79,9 +86,16 @@ const Navbar = () => {
       </ul>
     </div>
     <div className="navbar-end">
-    <Link href="/login">Login</Link>
-    <TiShoppingCart />
-      <a className="btn btn-outline text-red-500 hover:bg-red-400 hover:text-white">Appointment</a>
+
+    <TiShoppingCart  className="bg-red-500 rounded-full text-white  text-[26px] lg:text-4xl p-2 mx-0 lg:mx-2 hover:bg-none hover:text-black" />
+    {
+      sesstion.data ?  <Link href='/login' className="btn btn-outline text-red-500 hover:bg-red-400 hover:text-white sm:p-2 mx-1 lg:mx-2" title={sesstion.data.user.email}>Log Out</Link> 
+      :
+      <Link href='/login' className="btn btn-outline text-red-500 hover:bg-red-400 hover:text-white sm:p-2 mx-1 lg:mx-2">Login</Link>
+    }
+   
+      <a className="btn btn-outline text-red-500 hover:bg-red-400 hover:text-white p-2">Appointment</a>
+   
     </div>
   </div>
     </div>
